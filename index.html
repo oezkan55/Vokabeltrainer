@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <!-- === Für Schriftart === -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="src/sass/main.scss" />
+
+    <!-- === JavaScript === -->
+    <script type="module" src="src/js/controller.js"></script>
+
+    <title>Vokabeltrainer</title>
+  </head>
+  <body>
+    <!-- === HEADER-HEADING === -->
+    <header class="vokabel-header">
+      <h1 class="vokabel-header__heading">Meine Vokabeln</h1>
+    </header>
+
+    <!-- === HEADER-NAVIGATION === -->
+    <header class="header">
+      <nav class="navigation">
+        <ul class="navigation__list">
+          <li>
+            <button class="btn btn--active btn--white">
+              Vokabel erstellen
+            </button>
+          </li>
+          <li>
+            <button class="btn btn--white">Vokabel Test</button>
+          </li>
+          <li>
+            <button class="btn btn--white btn--faq">FAQ</button>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- = MOBILE-NAV = -->
+      <div class="mobile-nav">
+        <div class="mobile-nav__background">&nbsp;</div>
+
+        <button class="mobile-nav__btn btn" title="schließen">
+          <span class="mobile-nav__icon">&nbsp;</span>
+        </button>
+
+        <nav class="mobile-nav__navigation">
+          <ul class="mobile-nav__list">
+            <li>
+              <button class="btn btn--mobile">Vokabel erstellen</button>
+            </li>
+            <li>
+              <button class="btn btn--mobile">Vokabel Test</button>
+            </li>
+            <li>
+              <button class="btn btn--mobile">Meine Vokabeln</button>
+            </li>
+            <li>
+              <button class="btn btn--mobile">FAQ</button>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- === VOKABELN-LEISTE === -->
+    <section class="vokabelleiste">
+      <ul class="vokabellist"></ul>
+    </section>
+
+    <!-- === MAIN-ANWENDUNG === -->
+    <main class="anwendung">
+      <aside class="info"></aside>
+
+      <div class="anwendung__form">
+        <form action="#" class="erstellen-form">
+          <div class="erstellen-form__group">
+            <textarea
+              type="text"
+              class="erstellen-form__input"
+              required
+              placeholder="Deutsch"
+              id="deutsch"
+            ></textarea>
+            <label for="deutsch" class="erstellen-form__label">Deutsch</label>
+          </div>
+
+          <div class="erstellen-form__group">
+            <button class="btn btn--uebersetzer" title="übersetzen">
+              <svg>
+                <use href="src/img/icons-sprite.svg#icon-uebersetzer" />
+              </svg>
+            </button>
+          </div>
+
+          <div class="erstellen-form__group">
+            <textarea
+              disabled
+              type="text"
+              class="erstellen-form__input"
+              required
+              placeholder="Englisch"
+              id="englisch"
+            ></textarea>
+            <label
+              for="deutsch"
+              class="erstellen-form__label erstellen-form__label--uebersetzung"
+              >Englisch</label
+            >
+          </div>
+
+          <button class="btn btn--erstellen">Hinzufügen</button>
+        </form>
+
+        <form action="#" class="test-form">
+          <input
+            type="text"
+            class="test-form__input"
+            placeholder="Lösung eingeben"
+            required
+          />
+
+          <div class="test-form__group">
+            <span class="test-form__vok-number"></span>
+            <span class="test-form__message">????</span>
+
+            <a href="#" title="Überspringen" class="btn btn--next-vok"
+              >Next &rArr;</a
+            >
+          </div>
+
+          <button class="btn btn--form btn--test">Vergleichen</button>
+
+          <div class="test-form__overlay u-visiblity-hidden"></div>
+        </form>
+      </div>
+    </main>
+
+    <!-- === MODAL-SCREEN === -->
+    <div class="overlay overlay--hidden"></div>
+
+    <div class="accordion">
+      <div class="accordion__item u-margin-bottom">
+        <span class="accordion__nummer">01</span>
+        <p class="accordion__text">Vokabel erstellen?</p>
+        <button class="btn btn--item">
+          <svg>
+            <use href="src/img/icons-sprite.svg#icon-pfeil-runter" />
+          </svg>
+        </button>
+
+        <ul class="accordion__list">
+          <li>deutsches Wort eingeben!</li>
+          <li>
+            auf
+            <svg><use href="src/img/icons-sprite.svg#icon-uebersetzer" /></svg>
+            Button klicken
+          </li>
+          <li>auf Hinzufügen Button klicken</li>
+          <li>
+            Vokabel wird unter
+            <strong>Meine Vokabeln</strong> angezeigt
+          </li>
+        </ul>
+      </div>
+      <div class="accordion__item">
+        <span class="accordion__nummer">02</span>
+        <p class="accordion__text">Vokabel Test?</p>
+
+        <button class="btn btn--item">
+          <svg>
+            <use href="src/img/icons-sprite.svg#icon-pfeil-runter" />
+          </svg>
+        </button>
+
+        <ul class="accordion__list">
+          <li>deutsches Wort wird angezeigt</li>
+          <li>geben Sie die richtige englische Übersetzung ein</li>
+          <li>auf <strong>vegleichen</strong> klicken</li>
+          <li>alle Vokabeln unter Meine Vokabeln werden abgefragt</li>
+        </ul>
+      </div>
+      <button title="schließen" class="btn btn--accordion">×</button>
+    </div>
+  </body>
+</html>

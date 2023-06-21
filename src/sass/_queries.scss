@@ -1,0 +1,41 @@
+/*********************************
+MEDIA QUERY MANAGER
+**********************************/
+/*
+1000px - 1450px:   large
+656px - 1000px:    medium
+0 - 656px:         small
+
+$breakpoint Argument auswahl:
+- large
+- medium
+- small
+- desktop (Desktop zustand nach JS wiederhestellen)
+*/
+
+@mixin respons($breakpoint) {
+  @if $breakpoint == large {
+    // 1450px / 16px
+    @media only screen and (max-width: 90.6em) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == medium {
+    @media only screen and (max-width: 62.5em) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == small {
+    @media only screen and (max-width: 41em) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == desktop {
+    @media only screen and (min-width: 62.5em) {
+      @content;
+    }
+  }
+}

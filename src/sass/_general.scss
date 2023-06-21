@@ -1,0 +1,408 @@
+@import "queries";
+/* 
+= SYSTEM =
+
+- Font sizes (px):
+10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98
+
+- Spacing system (px)
+2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128
+*/
+
+// = COLORS =
+
+// Primary:
+$color-primary: #3b5bdb;
+
+// Tints(hellere Versionen):
+$color-primary-light: #d8def8;
+
+// Shades(dunklere Versionen):
+$color-primary-dark: #182458;
+
+// Accents(Sekundäre):
+$color-secondary: #ff7730;
+$color-secondary-rgb: 255, 119, 48;
+
+// Greys(Grautöne):
+$color-grey-dark-1: #555;
+$color-grey-dark-2: #333;
+
+$color-grey-light-1: #ced4da;
+$color-grey-light-2: #a0a0a0;
+
+$color-white: #fff;
+$color-black: #000;
+
+/****************************/
+/* GENERAL */
+/****************************/
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%; // 1rem = 10px,  10/16 = 62.5%
+
+  @include respons(large) {
+    font-size: 56.2%;
+  }
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  line-height: 1.5;
+  color: $color-grey-dark-1;
+  box-sizing: border-box;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: 9rem 1fr;
+
+  @include respons(medium) {
+    grid-template-columns: 1fr;
+  }
+}
+
+/****************************/
+/* LAYOUT*/
+/****************************/
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(4px);
+  z-index: 200;
+  transition: all 0.2s;
+
+  &--hidden {
+    visibility: hidden;
+    opacity: 0;
+  }
+}
+
+.header {
+  position: relative;
+  background-color: #3b5bdb;
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.vokabel-header {
+  padding: 2.4rem;
+  background-color: $color-primary-dark;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__heading {
+    color: $color-white;
+    font-size: 2.5rem;
+    font-weight: 700;
+  }
+
+  @include respons(medium) {
+    display: none;
+  }
+}
+
+.vokabelleiste {
+  overflow: scroll;
+  max-width: 60vh;
+
+  @include respons(medium) {
+    display: none;
+
+    margin: 0 auto;
+  }
+
+  @include respons(desktop) {
+    display: block !important;
+  }
+}
+
+.anwendung {
+  padding: 0.4rem;
+  position: relative;
+  perspective: 200rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4.8rem;
+
+  @include respons(small) {
+    gap: 0;
+    justify-content: space-between;
+  }
+
+  @include respons(desktop) {
+    display: flex !important;
+  }
+
+  &__form {
+    background-color: $color-primary-light;
+    padding: 6.4rem;
+    font-size: 3rem;
+    border: 2px solid $color-grey-light-1;
+    border-radius: 5px;
+    box-shadow: 0 0.8rem 2rem rgba($color: $color-black, $alpha: 0.1);
+
+    position: relative;
+    transition: transform 0.8s linear;
+    transform-style: preserve-3d;
+
+    &--rotate {
+      transform: rotateY(-180deg);
+    }
+
+    @include respons(medium) {
+      transition: none;
+      padding: 3.2rem;
+    }
+
+    @include respons(small) {
+      width: 100%;
+      padding: 0.8rem;
+      font-size: 2rem;
+    }
+  }
+}
+
+/*  
+*/
+/****************************/
+/*  BUTTONS */
+/****************************/
+
+.btn {
+  border: none;
+  cursor: pointer;
+  background: none;
+  font-family: inherit;
+
+  &--white {
+    color: $color-white;
+    font-size: 2.4rem;
+    font-weight: 700;
+    padding: 1.2rem 2.4rem;
+    position: relative;
+    z-index: 5;
+    transition: all 0.3s;
+
+    &::after {
+      content: "";
+      display: inline-block;
+      width: 100%;
+      height: 100%;
+      border-radius: 10rem;
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: scale(1.2);
+      transition: all 0.4s, opacity 0.2s;
+      z-index: -1;
+      opacity: 0.5;
+    }
+
+    &:hover {
+      color: $color-grey-dark-1;
+    }
+    &:hover::after {
+      opacity: 1;
+
+      transform: scale(1);
+      background-color: $color-white;
+      box-shadow: 0 1rem 2rem rgb(0 0 0 / 15%);
+    }
+
+    &:active::after {
+      box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%);
+    }
+
+    &:active {
+      transform: translateY(2px);
+    }
+  }
+
+  &--mobile {
+    color: inherit;
+    font-size: calc(3rem + 2vw);
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+  }
+
+  &--vokabel {
+    svg {
+      width: 2.7rem;
+      height: 2.7rem;
+      fill: #ced4da;
+      color: $color-grey-dark-1;
+      transition: all 0.2s;
+    }
+
+    &:hover svg {
+      transform: scale(1.2);
+    }
+
+    &:active svg {
+      transform: translateY(2px) scale(1.2);
+    }
+  }
+
+  &--accordion {
+    color: $color-grey-dark-1;
+    font-size: 3.6rem;
+
+    position: absolute;
+    right: 0.8rem;
+    top: -0.2rem;
+  }
+
+  &--erstellen,
+  &--test {
+    background-color: $color-primary;
+    padding: 1.6rem;
+    font-size: 2.4rem;
+    font-weight: 700;
+    border-radius: 10rem;
+    transition: all 0.4s;
+
+    grid-column: 1 / -1;
+
+    @include respons(small) {
+      font-size: inherit;
+    }
+
+    &:active {
+      transform: translateY(2px);
+    }
+  }
+
+  &--erstellen:hover {
+    box-shadow: 0 0 2rem 1rem rgba($color-primary, 0.2);
+    color: $color-white;
+  }
+
+  &--uebersetzer {
+    transition: all 0.4s;
+    &:hover {
+      svg {
+        animation: btnUebersetzerMove 0.8s infinite alternate;
+      }
+    }
+
+    &:active {
+      transform: translateY(5px);
+    }
+  }
+
+  &--next-vok {
+    font-style: italic;
+    transition: all 0.4s;
+    color: #000;
+    text-decoration: none;
+
+    &:hover {
+      color: $color-primary;
+    }
+
+    &:active {
+      transform: translateY(2px);
+    }
+  }
+
+  &--active {
+    background-color: $color-white;
+    color: $color-grey-dark-1;
+    border-radius: 10rem;
+  }
+}
+
+/*  
+*/
+/****************************/
+/* UTILITIES / HELFER-CLASSES */
+/****************************/
+.u-vertikal-center {
+  display: flex;
+  align-items: center;
+}
+
+.u-margin-bottom {
+  margin-bottom: 1.6rem;
+}
+
+.u-visiblity-hidden {
+  display: none !important;
+}
+
+/*  
+*/
+/****************************/
+/* ANIMATION */
+/****************************/
+@keyframes vokabelMove {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes messageEffekt {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes btnBackground {
+  from {
+    background-position: -10%;
+  }
+  to {
+    background-position: 112%;
+  }
+}
+
+@keyframes btnUebersetzerMove {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-0.6rem);
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
