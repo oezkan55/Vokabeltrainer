@@ -45,6 +45,10 @@ $color-black: #000;
   box-sizing: inherit;
 }
 
+:root {
+  --doc-height: 100%;
+}
+
 html {
   font-size: 62.5%; // 1rem = 10px,  10/16 = 62.5%
 
@@ -59,7 +63,8 @@ body {
   line-height: 1.5;
   color: $color-grey-dark-1;
   box-sizing: border-box;
-  min-height: 100vh;
+  height: 100vh;
+  height: var(--doc-height);
   position: relative;
   overflow-x: hidden;
   overflow-y: auto;
