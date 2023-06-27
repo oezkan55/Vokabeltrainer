@@ -2,6 +2,9 @@
 
 😁😁😁Mein aller ERSTES Projekt😁😁😁
 
+- Live Demo:
+https://vokabeltrainer-alibey.netlify.app/
+
 \***\*\*\*\*\*\*\***\*\*\*\*\***\*\*\*\*\*\*\***/
 //_ ANWENDUNG STARTEN _/ \***\*\*\*\*\*\*\***\*\*\*\*\***\*\*\*\*\*\*\***/
 
